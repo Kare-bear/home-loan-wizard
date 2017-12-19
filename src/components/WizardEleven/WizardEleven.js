@@ -1,6 +1,8 @@
 import React,  { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import{connect} from 'react-redux';
+
 class WizardEleven extends Component {
 
     render(){
@@ -37,7 +39,7 @@ class WizardEleven extends Component {
                         <div className="overarching-div">
                             <div className="form">What type of property are you purchasing?: 
                                 <p className="p2">
-                                    {this.props.propType} 
+                                    {this.props.propertyType} 
                                 </p>
                             </div>
                         </div>
@@ -109,7 +111,9 @@ class WizardEleven extends Component {
                         <div className="overarching-div">
                             <div className="form">Current Address:
                                 <p className="p2">
-                                    {this.props.addressOne} {this.props.addressTwo} {this.props.addressThree}    
+                                    {this.props.addressOne} <br/>
+                                    {this.props.addressTwo} <br/>
+                                    {this.props.addressThree}    
                                 </p>
                             </div>
                         </div>
@@ -126,4 +130,25 @@ class WizardEleven extends Component {
     }
 }
 
-export default WizardEleven;
+function mapStateToProps(state){
+    return{
+        loanType: state.loanType,
+        propertyType: state.propertyType,
+        city: state.city,
+        propToBeUsedOn: state.propToBeUsedOn,
+        found: state.found,
+        realEstateAgent: state.realEstateAgent,
+        cost: state.cost,
+        downPayment: state.downPayment,
+        credit: state.credit,
+        history: state.history,
+        addressOne: state.addressOne,
+        addressTwo: state.addressTwo,
+        addressThree: state.addressThree,
+        firstName: state.firstName,
+        lastName: state.lastName,
+        email: state.email
+    };
+}
+
+export default connect(mapStateToProps)(WizardEleven);
